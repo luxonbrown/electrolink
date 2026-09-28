@@ -1,0 +1,87 @@
+/* Google Fonts first: an @import must precede every other rule except
+   @charset/@layer, and `@import 'tailwindcss'` expands into real rules. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-hand: 'Caveat', 'Segoe Script', cursive;
+
+  /* Brand navy — header, hero, dark promo cards */
+  --color-navy-50: #f2f6fc;
+  --color-navy-100: #e2ebf8;
+  --color-navy-200: #c2d5f0;
+  --color-navy-300: #8fafe1;
+  --color-navy-400: #5482cd;
+  --color-navy-500: #2f5cae;
+  --color-navy-600: #1d4288;
+  --color-navy-700: #143063;
+  --color-navy-800: #0f2247;
+  --color-navy-900: #0a1e3f;
+  --color-navy-950: #061229;
+
+  /* Accent blue — buttons, links, highlights */
+  --color-brand-50: #eff5ff;
+  --color-brand-100: #dbe8fe;
+  --color-brand-200: #bfd7fe;
+  --color-brand-300: #93bbfd;
+  --color-brand-400: #6095fa;
+  --color-brand-500: #3b76f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4fd7;
+  --color-brand-800: #1e42ae;
+  --color-brand-900: #1e3c8a;
+
+  --shadow-card: 0 1px 2px 0 rgb(10 30 63 / 0.06), 0 1px 3px 0 rgb(10 30 63 / 0.08);
+  --shadow-card-hover: 0 10px 24px -6px rgb(10 30 63 / 0.16), 0 4px 10px -4px rgb(10 30 63 / 0.1);
+
+  --animate-marquee: marquee 26s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-slate-50 font-sans text-slate-800 antialiased;
+  }
+
+  /* Consistent focus ring for keyboard users across the whole app */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-600;
+  }
+}
+
+@layer components {
+  /* Shared page shell + section rhythm */
+  .page-shell {
+    @apply mx-auto w-full max-w-[1400px] px-4 sm:px-5;
+  }
+
+  .section-title {
+    @apply text-lg font-bold text-navy-900 sm:text-xl;
+  }
+}
+
+/* Respect users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
